@@ -2,14 +2,13 @@ import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
 import Vision from '@hapi/vision';
 import Cookie from 'hapi-auth-cookie';
-import fs from 'fs';
-// import { hashSync, verifySync } = require('sodium').crypto.pwhash;
 import Handlebars from "handlebars";
 import { fileURLToPath } from "url";
 import path from "path";
 import { webRoutes } from "./web-routes.js"
 import { accountsController } from "./controllers/accounts-controller.js";
 import 'dotenv/config'
+import { monitorTemp } from './monitorTemp';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -58,7 +57,6 @@ const init = async () => {
       }
       return { valid: false };
     }
-    // validate: accountsController.validate,
   });
 
   server.auth.default('session');
@@ -66,6 +64,9 @@ const init = async () => {
   server.route(webRoutes);
   await server.start();
   console.log('Server running on %s', server.info.uri);
+
+  monitorTemp();
+  console.log('started monitoring temperatures');
 };
 
 process.on("unhandledRejection", (err) => {

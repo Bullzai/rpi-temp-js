@@ -32,13 +32,13 @@ export const accountsController = {
         // Finding user by username
         const user = users.find(u => u.username === username);
 
-        // Check if the user exists in the dataset
+        // Check if the user exists
         if (!user) {
           return h.redirect("/");
         }
 
         // Check if the provided password matches the stored hash
-        if (!bcrypt.compareSync(password, user.hash)) {  // changed user.password to user.hash
+        if (!bcrypt.compareSync(password, user.hash)) {
           return h.redirect("/");
         }
 
