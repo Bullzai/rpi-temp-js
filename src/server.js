@@ -8,7 +8,7 @@ import path from "path";
 import { webRoutes } from "./web-routes.js"
 import { accountsController } from "./controllers/accounts-controller.js";
 import 'dotenv/config'
-import { monitorTemp } from './monitorTemp';
+import { monitorTemp } from './monitorTemp.js';
 
 
 const __filename = fileURLToPath(import.meta.url);

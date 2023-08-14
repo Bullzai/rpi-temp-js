@@ -12,11 +12,12 @@ export const dashboardController = {
       const readingsPath = path.join(currentDir, '../..', 'readings.json');
       const readingsData = fs.readFileSync(readingsPath, 'utf-8');
       const readings = JSON.parse(readingsData);
+      const latestReadings = readings.slice(-20).reverse();
 
       const viewData = {
         title: "Temperature Readings Dashboard",
         user: loggedInUser,
-        readings: readings
+        readings: latestReadings
       };
 
       return h.view("dashboard-view", viewData);
