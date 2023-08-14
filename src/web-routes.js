@@ -9,5 +9,5 @@ export const webRoutes = [
 
   { method: "GET", path: "/dashboard", config: dashboardController.index },
 
-  { method: 'GET', path: '/public/{param*}', handler: { directory: { path: 'public' } } },
+  { method: 'GET', path: '/bg.mp4', handler: { file: 'bg.mp4' }, options: { auth: false } }
 ];

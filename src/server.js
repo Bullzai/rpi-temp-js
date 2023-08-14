@@ -1,5 +1,5 @@
 import Hapi from '@hapi/hapi';
-import Inert from '@hapi/inert';
+import Inert from "@hapi/inert";
 import Vision from '@hapi/vision';
 import Cookie from 'hapi-auth-cookie';
 import Handlebars from "handlebars";
@@ -7,14 +7,20 @@ import { fileURLToPath } from "url";
 import path from "path";
 import { webRoutes } from "./web-routes.js"
 import { accountsController } from "./controllers/accounts-controller.js";
-import 'dotenv/config'
+import dotenv from "dotenv";
 import { monitorTemp } from './monitorTemp.js';
 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const init = async () => {
+const result = dotenv.config();
+if (result.error) {
+  console.log(result.error.message);
+  process.exit(1);
+}
+
+async function init() {
   const server = Hapi.server({
     port: 3000,
     host: 'localhost'
@@ -45,7 +51,7 @@ const init = async () => {
       password: process.env.SESSION_SECRET,
       isSecure: false,
     },
-    redirectTo: "/",
+    redirectTo: "/login",
     validateFunc: async (request, session) => {
       const account = await accountsController.validate(request, session);
       const out = {
