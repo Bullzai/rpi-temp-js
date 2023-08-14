@@ -1,16 +1,31 @@
+import axios from "axios";
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+
+const result = dotenv.config();
+if (result.error) {
+  console.log(result.error.message);
+  process.exit(1);
+}
+
 export function sendEmail(temperature) {
   let transporter = nodemailer.createTransport({
-    service: "gmail",
+    port: process.env.EMAIL_PORT,
+    host: process.env.EMAIL_IP,
+    secure: false,
     auth: {
-      user: "YOUR_EMAIL@gmail.com",
-      pass: "YOUR_PASSWORD",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+    tls: {
+      rejectUnauthorized: false,
     },
   });
 
   let mailOptions = {
-    from: "YOUR_EMAIL@gmail.com",
-    to: "RECIPIENT_EMAIL@gmail.com",
-    subject: "Temperature Alert!",
+    from: process.env.EMAIL_FROM,
+    to: process.env.EMAIL_TO,
+    subject: process.env.EMAIL_SUBJECT,
     text: `The temperature has reached ${temperature}°C`,
   };
 
@@ -25,8 +40,8 @@ export function sendEmail(temperature) {
 
 export function sendSlackMessage(temperature) {
   axios
-    .post(SLACK_WEBHOOK_URL, {
-      text: `<!here> The temperature has reached ${temperature}°C`,
+    .post(process.env.SLACK_WEB_HOOK, {
+      text: `${process.env.SLACK_MESSAGE} ${temperature}°C`,
     })
     .then((response) => {
       console.log("Message sent to Slack");

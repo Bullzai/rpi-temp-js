@@ -1,7 +1,7 @@
 [
   {
     "username": "admin",
-    "hash": "$2b$10$zcFA7YvAPehsJEqTFUkU2u5rjs9OICgD2iTzdl7LIGLPX2apgTp6u",
+    "hash": "hashed_password",
     "session": null
   }
 ]

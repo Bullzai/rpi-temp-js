@@ -1,9 +1,15 @@
-import fs from 'fs';
+import fs from "fs";
+import dotenv from "dotenv";
+
+const result = dotenv.config();
+if (result.error) {
+  console.log(result.error.message);
+  process.exit(1);
+}
 
 export function readTemp() {
-  // const SENSOR_PATH = "/sys/bus/w1/devices/w1_bus_master1/28-xxxxxx/w1_slave"; // replace "28-xxxxxx"
-  const SENSOR_PATH = "/home/vidma/DATA"; // replace "28-xxxxxx"
-  const data = fs.readFileSync(SENSOR_PATH, 'utf8');
+  const SENSOR_PATH = process.env.SENSOR_PATH;
+  const data = fs.readFileSync(SENSOR_PATH, "utf8");
   console.log(data);
   const match = data.match(/t=(\d+)/);
   if (match) {
