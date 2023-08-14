@@ -1,0 +1,19 @@
+<div class="ui container">
+  <h2 class="ui header">{{title}}</h2>
+  <table class="ui celled table">
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Temperature (°C)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each readings}}
+      <tr>
+        <td>{{this.timestamp}}</td>
+        <td>{{this.temperature}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
