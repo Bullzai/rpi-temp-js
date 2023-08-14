@@ -16,6 +16,8 @@ Save into readings.txt
 ## Deployment.
 
 npm install
+or 
+npm install @hapi/hapi @hapi/inert @hapi/vision hapi-auth-cookie sodium ed25519.js semantic-ui-css
 
 ## Additional Information.
 
