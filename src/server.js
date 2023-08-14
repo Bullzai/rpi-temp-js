@@ -1,15 +1,14 @@
-import Hapi from '@hapi/hapi';
+import Hapi from "@hapi/hapi";
 import Inert from "@hapi/inert";
-import Vision from '@hapi/vision';
-import Cookie from 'hapi-auth-cookie';
+import Vision from "@hapi/vision";
+import Cookie from "hapi-auth-cookie";
 import Handlebars from "handlebars";
 import { fileURLToPath } from "url";
 import path from "path";
-import { webRoutes } from "./web-routes.js"
+import { webRoutes } from "./web-routes.js";
 import { accountsController } from "./controllers/accounts-controller.js";
 import dotenv from "dotenv";
-import { monitorTemp } from './monitorTemp.js';
-
+import { monitorTemp } from "./monitorTemp.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,7 +22,7 @@ if (result.error) {
 async function init() {
   const server = Hapi.server({
     port: 3000,
-    host: 'localhost'
+    host: "localhost",
   });
 
   await server.register(Inert);
@@ -42,10 +41,13 @@ async function init() {
     isCached: false,
   });
 
-  const cache = server.cache({ segment: 'sessions', expiresIn: 60 * 60 * 1000 }); // should be 1hr
+  const cache = server.cache({
+    segment: "sessions",
+    expiresIn: 60 * 60 * 1000,
+  }); // should be 1hr
   server.app.cache = cache;
 
-  server.auth.strategy('session', 'cookie', {
+  server.auth.strategy("session", "cookie", {
     cookie: {
       name: "rpi-temp",
       password: process.env.SESSION_SECRET,
@@ -55,25 +57,25 @@ async function init() {
     validateFunc: async (request, session) => {
       const account = await accountsController.validate(request, session);
       const out = {
-        valid: account.isValid
+        valid: account.isValid,
       };
 
       if (out.valid) {
         return { valid: true, credentials: account.credentials };
       }
       return { valid: false };
-    }
+    },
   });
 
-  server.auth.default('session');
+  server.auth.default("session");
 
   server.route(webRoutes);
   await server.start();
-  console.log('Server running on %s', server.info.uri);
+  console.log("Server running on %s", server.info.uri);
 
   monitorTemp();
-  console.log('started monitoring temperatures');
-};
+  console.log("started monitoring temperatures");
+}
 
 process.on("unhandledRejection", (err) => {
   console.log(err);
