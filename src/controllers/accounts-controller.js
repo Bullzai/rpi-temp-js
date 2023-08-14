@@ -54,6 +54,7 @@ export const accountsController = {
 
   logout: {
     handler: function (request, h) {
+      request.cookieAuth.clear();
       return h.redirect("/");
     },
   },
