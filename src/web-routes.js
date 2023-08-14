@@ -8,4 +8,6 @@ export const webRoutes = [
   { method: "POST", path: "/authenticate", config: accountsController.login },
 
   { method: "GET", path: "/dashboard", config: dashboardController.index },
+
+  { method: 'GET', path: '/public/{param*}', handler: { directory: { path: 'public' } } },
 ];

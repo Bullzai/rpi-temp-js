@@ -15,7 +15,7 @@ export const dashboardController = {
       const latestReadings = readings.slice(-20).reverse();
 
       const viewData = {
-        title: "Temperature Readings Dashboard",
+        title: "",
         user: loggedInUser,
         readings: latestReadings
       };

@@ -8,5 +8,5 @@ export function monitorTemp() {
     console.log(temperatureValue);
     updateReadingsFile(temperatureValue);
     sendNotifications(temperatureValue);
-  }, 5 * 1000); // 5 min interval
+  }, 5 * 60 * 1000); // 5 min interval
 }
