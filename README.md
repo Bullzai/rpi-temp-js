@@ -24,8 +24,8 @@
 
 ## Persistence
 
-Readings are saved in readings.json
-Users are saved in users.json
+- Readings are saved in **readings.json**
+- Users are saved in **users.json**
 
 ## Deployment
 
