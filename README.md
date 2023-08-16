@@ -2,6 +2,9 @@
 
 **Name:** Vidmantas Valskis
 
+![image](https://github.com/Bullzai/rpi-temp-js/assets/29129335/7e8da76e-c10d-404c-8d5e-2fd121caa7cf)
+![image](https://github.com/Bullzai/rpi-temp-js/assets/29129335/8c5f2e55-fb34-4a9f-817f-f8cd6cbafd05)
+
 ## Features.
 
 + Read temparutres using 1 or 2 DS18B20 temperature sensors.
