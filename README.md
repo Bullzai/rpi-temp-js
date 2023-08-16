@@ -7,12 +7,18 @@
 
 ## Features.
 
-+ Read temparutres using 1 or 2 DS18B20 temperature sensors.
++ Read temperatures using 1 or 2 **DS18B20** temperature sensors.
 + Send emails upon reaching the threshold.
 + Send slack messages to a channel upon reaching the threshold.
 + View temperature LIVE readings via browser.
 + Authentication using hash & salt.
 + Sessions
+
+## Hardware.
+- Raspberry Pi
+- Waterproof DS18B20-Compatible Temperature Sensor with Resistor ![image](https://github.com/Bullzai/rpi-temp-js/assets/29129335/950310a5-82c5-487f-93bf-42287755c1c3)
+- Mini Terminal Breakout Board For Raspberry Pi ![image](https://github.com/Bullzai/rpi-temp-js/assets/29129335/ca8a68f8-ce82-4b5e-b998-fcf54aa66271)
+
 
 #### Persistence
 
