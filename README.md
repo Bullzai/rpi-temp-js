@@ -17,9 +17,11 @@
 ## Hardware
 - Raspberry Pi
 - Waterproof DS18B20-Compatible Temperature Sensor with Resistor 
-- Mini Terminal Breakout Board For Raspberry Pi 
-![image](https://github.com/Bullzai/rpi-temp-js/assets/29129335/950310a5-82c5-487f-93bf-42287755c1c3)
-![image](https://github.com/Bullzai/rpi-temp-js/assets/29129335/ca8a68f8-ce82-4b5e-b998-fcf54aa66271)
+- Mini Terminal Breakout Board For Raspberry Pi
+  
+![image](https://github.com/Bullzai/rpi-temp-js/assets/29129335/65a59f73-b051-455f-ac79-474b3c5d34a7)
+
+
 ## Persistence
 
 Readings are saved in readings.json
