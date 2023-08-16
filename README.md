@@ -18,8 +18,10 @@ Users are saved in users.json
 
 ## Deployment.
 
+```
 npm install
 npm run start
+```
 
 ## Additional Information.
 
