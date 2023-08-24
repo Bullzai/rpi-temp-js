@@ -51,6 +51,27 @@ export function sendSlackMessage(temperatureData) {
     });
 }
 
+export function sendSlackDirectMessage(temperatureData) {
+  axios
+    .post('https://slack.com/api/chat.postMessage',
+      {
+        channel: process.env.USER_ID,
+        text: `${process.env.SLACK_MESSAGE} Sensor 1 temperature: ${temperatureData.sensor1_temperature}°C, Sensor 2 temperature: ${temperatureData.sensor2_temperature}°C`,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.BOT_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+      })
+    .then((response) => {
+      console.log("Message sent to user");
+    })
+    .catch((error) => {
+      console.error("Error sending message to Slack: ", error);
+    });
+}
+
 export function sendNotifications(temperatureData) {
   const threshold = 25; // set the value in C
 
@@ -60,5 +81,6 @@ export function sendNotifications(temperatureData) {
   ) {
     sendEmail(temperatureData);
     sendSlackMessage(temperatureData);
+    sendSlackDirectMessage(temperatureData);
   }
 }
